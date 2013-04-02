@@ -1,0 +1,37 @@
+{
+    "name":"browsers",
+    "version":"0.1.0",
+    "description":"一个纯粹的管理浏览器的模块",
+    "homepage":"https://github.com/totorojs/browsers-launcher",
+    "bugs":{
+        "url":"https://github.com/totorojs/browsers-launcher/issues"
+    },
+
+    "author":{
+        "name":"kangpangpang",
+        "email":"kangpangpang@gmail.com"
+    },
+
+    "dependencies":{
+        "winston": "~0.6.2",
+        "underscore": "*",
+        "rimraf": "~2.1.4",
+        "colorful": "~1.2.0",
+        "commander": "~1.1.1",
+        "win-spawn": "~1.1.0",
+        "async": "~0.2.6",
+        "restify": "~2.3.5"
+    },
+    "preferGlobal":true,
+    "repository":{
+        "type":"git",
+        "url":"https://github.com/totorojs/browsers-launcher.git"
+    },
+    "main":"./lib/index",
+    "bin":{
+        "browsers":"./bin/browsers"
+    },
+    "engines":{
+        "node":">= 0.8.22"
+    }
+}

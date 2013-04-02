@@ -1,0 +1,48 @@
+#!/usr/bin/env node
+
+var path = require('path');
+var fs = require('fs');
+
+var commander = require('commander');
+var spawn = require('win-spawn');
+require('colorful').colorful();
+
+var program = require('../lib/utils/program');
+var browsers = require('../lib/browsers');
+
+var pkgStr = fs.readFileSync(path.join(module.filename, '../../package.json'));
+var pkg = JSON.parse(pkgStr)
+
+commander.usage('[options]');
+
+commander
+  .option('-c, --capture', '默认打开主页')
+  .option('-p, --port', '本地服务默认端口号(8080)')
+  .option('--browsers [browser name]', '指定启动的浏览器, 默认 Chrome: [browsers]');
+
+commander.on('--help', function() {
+  console.log();
+  console.log('  ' + 'Examples:'.to.bold.blue.color);
+  console.log();
+  console.log('   启动Chrome');
+  console.log();
+  console.log('   $ ' + 'browsers run --browsers=Chrome'.to.magenta.color);
+  console.log();
+  console.log('   For more information: ' + 'https://github.com/totorojs/browsers-launcher'.to.underline.color);
+  console.log();
+});
+
+commander.parse(process.argv);
+
+// 解析参数
+
+var options = {
+    port: '8080',
+    browsers: 'Chrome',
+    retry: 4,
+    timeout: 300000,
+    capture: 'http://localhost:9000' 
+}
+
+browsers.create(options);
+
