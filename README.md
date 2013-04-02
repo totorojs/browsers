@@ -29,6 +29,7 @@ browsers-launcher
 ```
 npm install browsers -g
 browsers run --browsers=IE,Chrome,Firefox
+browsers run --browsers=IE,Chrome,Firefox --capture=http://10.**:9000
 ```
 ### API 方式
 ```
