@@ -16,9 +16,9 @@ var pkg = JSON.parse(pkgStr)
 commander.usage('[options]');
 
 commander
-  .option('-c, --capture[capture url]', '默认浏览器打开的地址')
+  .option('-c, --capture[capture url]', '默认浏览器打开的地址 [capture]')
   .option('-p, --port [local port]', '本地服务默认端口号(8080) [port]')
-  .option('--browsers [browser name]', '指定启动的浏览器, 默认 Chrome: [browsers]');
+  .option('--browsers [browsers name]', '指定启动的浏览器, 默认 Chrome: [browsers]');
 
 commander.on('--help', function() {
   console.log();
