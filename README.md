@@ -21,7 +21,7 @@ browsers-launcher
 
 ## 提供 web 服务
 * 查看当前浏览器服务状态 **http://%HOST%:8080/browsers**
-* 添加浏览器 **http://%HOST%:8080/browsers/Firefox**
+* 添加浏览器 **http://%HOST%:8080/browsers?add=Firefox**
 * 重启浏览器 **http://%HOST%:8080/restart**
 
 ## 安装和使用
