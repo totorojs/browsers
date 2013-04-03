@@ -16,8 +16,8 @@ var pkg = JSON.parse(pkgStr)
 commander.usage('[options]');
 
 commander
-  .option('-c, --capture', '默认打开主页')
-  .option('-p, --port', '本地服务默认端口号(8080)')
+  .option('-c, --capture[capture url]', '默认浏览器打开的地址')
+  .option('-p, --port [local port]', '本地服务默认端口号(8080) [port]')
   .option('--browsers [browser name]', '指定启动的浏览器, 默认 Chrome: [browsers]');
 
 commander.on('--help', function() {
@@ -37,11 +37,11 @@ commander.parse(process.argv);
 // 解析参数
 
 var options = {
-    port: '8080',
-    browsers: 'Firefox',
+    port: commander.port || '8080',
+    browsers: commander.browsers || 'Firefox',
     retry: 4,
-    timeout: 300000,
-    capture: 'http://localhost:9000' 
+    timeout: 3000000,
+    capture: commander.capture || 'http://localhost:9000' 
 }
 
 browsers.create(options);
