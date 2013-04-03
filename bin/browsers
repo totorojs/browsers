@@ -38,7 +38,7 @@ commander.parse(process.argv);
 
 var options = {
     port: '8080',
-    browsers: 'Chrome',
+    browsers: 'Firefox',
     retry: 4,
     timeout: 300000,
     capture: 'http://localhost:9000' 

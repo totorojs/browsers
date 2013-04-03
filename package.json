@@ -20,7 +20,11 @@
         "commander": "~1.1.1",
         "win-spawn": "~1.1.0",
         "async": "~0.2.6",
-        "restify": "~2.3.5"
+        "express": "~3.x"
+    },
+    "devDependencies": {
+        "grunt": "~0.4.1",
+        "grunt-contrib-jshint": "~0.3.0"
     },
     "preferGlobal":true,
     "repository":{
