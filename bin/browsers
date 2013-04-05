@@ -40,7 +40,7 @@ var options = {
     port: commander.port || '8080',
     browsers: commander.browsers || 'Firefox',
     retry: 4,
-    timeout: 3000000,
+    timeout: 50000,
     capture: commander.capture || 'http://localhost:9000' 
 }
 
