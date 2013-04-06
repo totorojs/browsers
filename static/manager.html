@@ -1,0 +1,69 @@
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <title>浏览器管理</title>
+    <link media="all" href="http://modules.spmjs.org/alice/one/1.0.0/one-full.css" rel="stylesheet">
+    <style>
+        .wrapper {
+            width: 990px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 26px;
+        }
+        .ui-grid-row {
+            margin-bottom: 15px;
+        }
+
+        .b_action > span {
+            cursor: pointer;
+        }
+
+        iframe {
+            width: 100%;
+            height: 200px;
+        }
+
+        .busy {
+            opacity: 0.4;
+            filter: alpha(opacity=40);
+        }
+
+    </style>
+    <script type="text/javascript" charset="utf-8" src="jquery.js"></script>
+    <script type="text/javascript" charset="utf-8" src="underscore.js"></script>
+    <script type="text/javascript">
+    </script>
+    <script type="text/javascript">
+        _.templateSettings = {
+            interpolate : /\{(.+?)\}/g
+        };
+
+        var tpl = '<div class="ui-box">' + 
+                    '<div class="ui-box-head">' + 
+                      '<div class="ui-box-head-border">' + 
+                        '<h3 class="ui-box-head-title">{url}</h3>' + 
+                      '</div>' + 
+                    '</div>' + 
+                    '<div class="ui-box-container">' + 
+                    '<iframe src="{url}"></iframe>' + 
+                    '</div>'
+
+        $(function() {
+            var wrapper = $('.wrapper');
+            $('#addUrl').on('click', function() {
+                var url = $('#url').val();
+                wrapper.append(_.template(tpl, {url: url}));
+                $('#url').val('');
+            });
+        })
+       
+    </script>
+    </head>
+    
+    <body>
+        <input size="100" id="url" type="text" value=""/>  &nbsp;&nbsp; <a href="#" id="addUrl" class="ui-button ui-button-lwhite">添加新页面</a>
+        <div class="wrapper">
+        </div>
+    </body>
+</html>
