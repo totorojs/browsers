@@ -1,0 +1,161 @@
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <title>Alice 的简单例子</title>
+    <link media="all" href="http://modules.spmjs.org/alice/one/1.0.0/one-full.css" rel="stylesheet">
+    <style>
+        .wrapper {
+            width: 990px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 26px;
+        }
+        .ui-grid-row {
+            margin-bottom: 15px;
+        }
+
+        .b_action > span {
+            cursor: pointer;
+        }
+
+        .busy {
+            opacity: 0.4;
+            filter: alpha(opacity=40);
+        }
+
+    </style>
+    <script type="text/javascript" charset="utf-8" src="jquery.js"></script>
+    <script type="text/javascript" charset="utf-8" src="underscore.js"></script>
+    <script type="text/javascript">
+    </script>
+    <script type="text/javascript">
+        _.templateSettings = {
+            interpolate : /\{(.+?)\}/g
+        };
+
+        var tpl = '<tr class="b_"{bName}>' + 
+                  '<td class="b_index_{bName}">{index}</td>' +
+                  '<td class="b_name_{bName}">{bName}</td>' +
+                  '<td class="b_launched_{bName}">{launchedList}</td>' +
+                  '<td class="b_action" type="{bName}"><span action="add">添加</span>&nbsp;&nbsp;<span action="del">删除</span>&nbsp;&nbsp;<span action="restart">全部重启</span></td>' +
+                  '</tr>'
+
+
+        $(function() {
+            var tbody = $('#browsers');
+            $.ajax('/browsers').then(function(data) {
+                var launched = data.launchedBrowsers;
+                var launchedKeys = _.keys(launched);
+
+                tbody.hide();
+                _.each(data.validBrowsers, function(b_name, index) {
+                    var launchedList = '';
+                    if (launchedKeys.indexOf(b_name) > -1) {
+                        var count = launched[b_name];
+                        while(count--) {
+                            launchedList += '<image src="images/' + b_name.toLowerCase() + '.png"/>'; 
+                        }
+                    }
+                    tbody.append($(_.template(tpl, {
+                        index: index + 1,
+                        bName: b_name,
+                        launchedList: launchedList
+                    })));
+                });
+                tbody.show();
+            });
+
+            tbody.delegate('.b_action > span', 'click', function(evt) {
+                var action = $(this).attr('action');
+                var bName = $(this).parent().attr('type');
+                var launcheds = $('.b_launched_' + bName + ' img');
+
+                if (action === 'restart') {
+                    _.each(launcheds, function(img) {
+                        $(img).addClass('busy');
+                    });
+                }
+
+                manageBrowser(action, bName, function(succ) {
+                    var launcheds = $('.b_launched_' + bName);
+                    var imgs = $('img', launcheds);
+
+                    if (action == 'add') {
+                        launcheds.append(getIcon(bName));
+                    } else if (action == 'del') {
+                        if (imgs.length) {
+                            $('img', launcheds)[0].remove();
+                        }
+                    } else if (action == 'restart') {
+                        setTimeout(function() {
+                            _.each(imgs, function(img) {
+                                $(img).removeClass('busy');
+                            });
+                        }, 1000);
+                    }
+                })
+            });
+
+            function tempBrowser(action, name) {
+                if (action == 'add') {
+                    // add new browser
+                    $('.b_launched_' + name).append($(getIcon(name, 'busy')));
+                } else if (action == 'del') {
+                    // remove browser
+                    var launched = $('.b_launched_' + name + ' > image')[0];
+                    launched && launched.addClass(busy);
+                }
+
+            }
+
+            function getIcon(name, status) {
+                return '<image class="' + status + '" src="images/' + name.toLowerCase() + '.png"/>';
+            }
+
+            function manageBrowser(action, bName, cb) {
+                var url = '/browsers';
+                if (action === 'add') {
+                    action = 'POST';
+                }
+                if (action === 'del') {
+                    action = 'DELETE';
+                }
+
+                if (action === 'restart') {
+                    url = '/restart';
+                    action = 'GET';
+                }
+
+                $.ajax({
+                    'url': url,
+                    'type': action,
+                    'data': {
+                        bName: bName
+                    }
+                }).done(function(obj) {
+                    cb(obj.succ);
+                })
+            }
+        });
+    </script>
+    </head>
+    
+    <body>
+        <div class="wrapper">
+            <h1>当前有效浏览器</h1>
+            <table class="ui-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>浏览器名称</th>
+                        <th>已启动</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="browsers">
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
