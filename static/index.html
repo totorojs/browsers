@@ -1,7 +1,7 @@
 <html>
     <head>
     <meta charset="UTF-8">
-    <title>Alice 的简单例子</title>
+    <title>浏览器管理</title>
     <link media="all" href="http://modules.spmjs.org/alice/one/1.0.0/one-full.css" rel="stylesheet">
     <style>
         .wrapper {
@@ -34,9 +34,9 @@
             interpolate : /\{(.+?)\}/g
         };
 
-        var tpl = '<tr class="b_"{bName}>' + 
+        var tpl = '<tr class="b_{bName}">' + 
                   '<td class="b_index_{bName}">{index}</td>' +
-                  '<td class="b_name_{bName}">{bName}</td>' +
+                  '<td class="b_name">{bName}</td>' +
                   '<td class="b_launched_{bName}">{launchedList}</td>' +
                   '<td class="b_action" type="{bName}"><span action="add">添加</span>&nbsp;&nbsp;<span action="del">删除</span>&nbsp;&nbsp;<span action="restart">全部重启</span></td>' +
                   '</tr>'
@@ -64,6 +64,25 @@
                     })));
                 });
                 tbody.show();
+            }).then(function() {
+                $.ajax('/versions').then(function(data) {
+                    _.keys(data).forEach(function(bName) {
+                        data[bName].reg = new RegExp(bName, "i");
+                    });
+
+                    $('.b_name', tbody).each(function() {
+                        var bName = $(this).html();
+                        var bFullName = bName;
+                        _.values(data).some(function(obj) {
+                            if (obj.reg.test(bName)) {
+                                bFullName = obj.value;
+                                return true;
+                            }
+                        });       
+
+                        $(this).html(bFullName);
+                    })
+                })
             });
 
             tbody.delegate('.b_action > span', 'click', function(evt) {
@@ -96,18 +115,6 @@
                     }
                 })
             });
-
-            function tempBrowser(action, name) {
-                if (action == 'add') {
-                    // add new browser
-                    $('.b_launched_' + name).append($(getIcon(name, 'busy')));
-                } else if (action == 'del') {
-                    // remove browser
-                    var launched = $('.b_launched_' + name + ' > image')[0];
-                    launched && launched.addClass(busy);
-                }
-
-            }
 
             function getIcon(name, status) {
                 return '<image class="' + status + '" src="images/' + name.toLowerCase() + '.png"/>';
