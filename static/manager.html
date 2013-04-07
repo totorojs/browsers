@@ -21,7 +21,7 @@
 
         iframe {
             width: 100%;
-            height: 200px;
+            height: 180px;
         }
 
         .busy {
@@ -67,6 +67,12 @@
                 wrapper.append(_.template(tpl, {url: url}));
                 $('#url').val('');
             }
+
+            $.ajax('/managers').done(function(data) {
+                _.forEach(data, function(url) {
+                    wrapper.append(_.template(tpl, {url: url}));
+                });
+            });
 
         })
        

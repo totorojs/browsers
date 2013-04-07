@@ -1,1 +1,1 @@
-{"browsers": ["chrome", "chrome"]}
+{"browsers": ["chrome", "chrome"], "managers": ["http://10.15.52.87:8080", "http://10.15.52.88:8080"]}
