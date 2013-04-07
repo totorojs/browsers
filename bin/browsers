@@ -6,6 +6,7 @@ var fs = require('fs');
 var commander = require('commander');
 var spawn = require('win-spawn');
 require('colorful').colorful();
+var _ = require('underscore');
 
 var program = require('../lib/utils/program');
 var browsers = require('../lib/browsers');
@@ -13,12 +14,15 @@ var browsers = require('../lib/browsers');
 var pkgStr = fs.readFileSync(path.join(module.filename, '../../package.json'));
 var pkg = JSON.parse(pkgStr)
 
-commander.usage('[options]');
+commander
+  .version(pkg.version)
+  .usage('[options]');
 
 commander
   .option('-c, --capture [capture url]', '默认浏览器打开的地址: [capture]')
   .option('-p, --port [local port]', '本地服务默认端口号(8080): [port]')
   .option('--browsers [browsers name]', '指定启动的浏览器, 默认 Chrome: [browsers]');
+
 
 commander.on('--help', function() {
   console.log();
@@ -34,7 +38,15 @@ commander.on('--help', function() {
 
 commander.parse(process.argv);
 
-// 解析参数
+
+// 解析配置
+var configPath = path.join(process.cwd(), 'browsersConfig.json');
+var config = {};
+if (fs.existsSync(configPath)) {
+  config = JSON.parse(fs.readFileSync(configPath) + '');
+}
+
+_.extend(commander, config);
 
 var options = {
     port: commander.port || '8080',
@@ -42,7 +54,8 @@ var options = {
     retry: 4,
     timeout: 50000,
     capture: commander.capture || 'http://localhost:9000' 
-}
+};
+
 
 browsers.create(options);
 
