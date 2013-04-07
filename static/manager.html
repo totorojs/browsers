@@ -52,17 +52,29 @@
         $(function() {
             var wrapper = $('.wrapper');
             $('#addUrl').on('click', function() {
+                addUrl();
+            });
+
+            $('#url').keypress(function(data) {
+                var charCode = data.charCode;
+                if (data.charCode === 13) {
+                    addUrl();
+                }
+            })
+
+            function addUrl(){
                 var url = $('#url').val();
                 wrapper.append(_.template(tpl, {url: url}));
                 $('#url').val('');
-            });
+            }
+
         })
        
     </script>
     </head>
     
     <body>
-        <input size="100" id="url" type="text" value=""/>  &nbsp;&nbsp; <a href="#" id="addUrl" class="ui-button ui-button-lwhite">添加新页面</a>
+        <input size="100" id="url" type="text" value="" style="margin:20px"/>  &nbsp;&nbsp; <a href="#" id="addUrl" class="ui-button ui-button-lwhite">添加新页面</a>
         <div class="wrapper">
         </div>
     </body>
