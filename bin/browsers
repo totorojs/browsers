@@ -46,7 +46,7 @@ if (fs.existsSync(configPath)) {
   config = JSON.parse(fs.readFileSync(configPath) + '');
 }
 
-_.extend(commander, config);
+_.defaults(commander, config);
 
 var options = {
     port: commander.port || '8080',
