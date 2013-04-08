@@ -88,7 +88,7 @@
                 })
             }).
             then(function() {
-                var socket = io.connect(location.protocol + '//' + host);
+                var socket = io.connect(location.protocol + '//' + location.host);
                 var memoryArea = $('#memoryUsage');
                 socket.on('memory', function (memory) {
                     _.keys(memory).forEach(function(name) {
