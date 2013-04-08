@@ -53,7 +53,7 @@
                 tbody.hide();
                 _.each(data.validBrowsers, function(b_name, index) {
                     var launchedList = '';
-                    if (launchedKeys.indexOf(b_name) > -1) {
+                    if (_.indexOf(launchedKeys, b_name) > -1) {
                         var count = launched[b_name];
                         while(count--) {
                             launchedList += '<image src="images/' + b_name.toLowerCase() + '.png"/>'; 
@@ -88,7 +88,7 @@
                 })
             }).
             then(function() {
-                var socket = io.connect('http://localhost:8080');
+                var socket = io.connect(location.protocol + '//' + host);
                 var memoryArea = $('#memoryUsage');
                 socket.on('memory', function (memory) {
                     _.keys(memory).forEach(function(name) {
