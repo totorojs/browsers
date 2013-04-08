@@ -27,6 +27,7 @@
     </style>
     <script type="text/javascript" charset="utf-8" src="jquery.js"></script>
     <script type="text/javascript" charset="utf-8" src="underscore.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript">
     </script>
     <script type="text/javascript">
@@ -38,6 +39,7 @@
                   '<td class="b_index_{bName}">{index}</td>' +
                   '<td class="b_name">{bName}</td>' +
                   '<td class="b_launched_{bName}">{launchedList}</td>' +
+                  '<td class="b_memory_{bName}"></td>' +
                   '<td class="b_action" type="{bName}"><span action="add">添加</span>&nbsp;&nbsp;<span action="del">删除</span>&nbsp;&nbsp;<span action="restart">全部重启</span></td>' +
                   '</tr>'
 
@@ -64,7 +66,8 @@
                     })));
                 });
                 tbody.show();
-            }).then(function() {
+            }).
+            then(function() {
                 $.ajax('/versions').then(function(data) {
                     _.keys(data).forEach(function(bName) {
                         data[bName].reg = new RegExp(bName, "i");
@@ -83,6 +86,23 @@
                         $(this).html(bFullName);
                     })
                 })
+            }).
+            then(function() {
+                var socket = io.connect('http://localhost:8080');
+                var memoryArea = $('#memoryUsage');
+                socket.on('memory', function (memory) {
+                    _.keys(memory).forEach(function(name) {
+                        $('.b_memory_' + name, tbody).html(memory[name]);
+                    });
+
+                    memoryArea.html(memory.usedmem + '/' + memory.totalmem);
+                });
+
+                socket.emit('memory');
+
+                setInterval(function() {
+                    socket.emit('memory');
+                }, 5000);
             });
 
             tbody.delegate('.b_action > span', 'click', function(evt) {
@@ -105,6 +125,9 @@
                     } else if (action == 'del') {
                         if (imgs.length) {
                             $('img', launcheds)[0].remove();
+                        }
+                        if (imgs.length === 1) {
+                            $('.b_memory_' + bName, tbody).html('');
                         }
                     } else if (action == 'restart') {
                         setTimeout(function() {
@@ -156,11 +179,17 @@
                         <th></th>
                         <th>浏览器名称</th>
                         <th>已启动</th>
+                        <th>内存使用情况</th>
                         <th>操作</th>
                     </tr>
                 </thead>
                 <tbody id="browsers">
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5">内存使用状况: <span id="memoryUsage"></span></td>
+                    </tr>
+                </tfoot><!-- 表
             </table>
         </div>
     </body>

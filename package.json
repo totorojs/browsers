@@ -20,7 +20,8 @@
         "commander": "~1.1.1",
         "win-spawn": "~1.1.0",
         "async": "~0.2.6",
-        "express": "~3.x"
+        "express": "~3.x",
+        "socket.io": "~0.9.x"
     },
     "devDependencies": {
         "grunt": "~0.4.1",
