@@ -103,6 +103,12 @@
                 setInterval(function() {
                     socket.emit('memory');
                 }, 5000);
+
+                socket.on('systeminfo', function(info) {
+                    $('#systemInfo').html(info);
+                });
+
+                socket.emit('systeminfo');
             });
 
             tbody.delegate('.b_action > span', 'click', function(evt) {
@@ -187,7 +193,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="5">系统内存使用状况: <span id="memoryUsage"></span></td>
+                        <td colspan="5">系统: <span id="systemInfo"></span>&nbsp;内存使用状况: <span id="memoryUsage"></span></td>
                     </tr>
                 </tfoot><!-- 表
             </table>
