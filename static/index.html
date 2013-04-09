@@ -92,7 +92,7 @@
                 var memoryArea = $('#memoryUsage');
                 socket.on('memory', function (memory) {
                     _.keys(memory).forEach(function(name) {
-                        $('.b_memory_' + name, tbody).html(memory[name]);
+                        $('.b_memory_' + name, tbody).html(memory[name] || '');
                     });
 
                     memoryArea.html(memory.usedmem + '/' + memory.totalmem);
