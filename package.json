@@ -1,6 +1,6 @@
 {
     "name":"browsers",
-    "version":"0.3.6",
+    "version":"0.3.7",
     "description":"一个纯粹的管理浏览器的模块",
     "homepage":"https://github.com/totorojs/browsers-launcher",
     "bugs":{
