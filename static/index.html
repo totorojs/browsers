@@ -95,7 +95,7 @@
                         $('.b_memory_' + name, tbody).html(memory[name] || '');
                     });
 
-                    memoryArea.html(memory.usedmem + '/' + memory.totalmem);
+                    memoryArea.html((memory.usedmem || '') + '/' + (memory.totalmem || ''));
                 });
 
                 socket.emit('memory');
