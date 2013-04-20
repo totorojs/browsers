@@ -21,7 +21,9 @@ commander
 commander
   .option('-c, --capture [capture url]', '默认浏览器打开的地址: [capture]')
   .option('-p, --port [local port]', '本地服务默认端口号(8080): [port]')
-  .option('--browsers [browsers name]', '指定启动的浏览器, 默认 Chrome: [browsers]');
+  .option('--browsers [browsers name]', '指定启动的浏览器, 默认 Chrome: [browsers]')
+  .option('--hub [s]', '指定主服务.: [http://10.15.52.87:8080/register]')
+  .option('--manager [b]', '是否启动管理服务');
 
 
 commander.on('--help', function() {
@@ -54,9 +56,11 @@ var options = {
     retry: 4,
     timeout: 50000,
     capture: commander.capture || 'http://localhost:9000',
-    managers: commander.managers || []
+    hub: commander.hub || 'http://localhost:8080/hub/register',
+    manager: commander.manager,
+    managers: commander.managers || [],
+    maxMemory: 500
 };
 
 
-browsers.create(options);
-
+browsers.run(options);

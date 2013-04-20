@@ -19,7 +19,7 @@
         "colorful": "~1.2.0",
         "commander": "~1.1.1",
         "win-spawn": "~1.1.0",
-        "async": "~0.2.6",
+        "async": "~0.2.7",
         "express": "~3.x",
         "socket.io": "~0.9.x",
         "when": "~2.0.1"
