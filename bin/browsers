@@ -51,7 +51,7 @@ if (fs.existsSync(configPath)) {
 _.defaults(commander, config);
 
 var options = {
-    server: commander.server || 'localhost:9999',
+    server: commander.server || '10.15.52.87:9999',
     port: commander.port || '8080',
     browsers: commander.browsers,
     timeout: 50000,
