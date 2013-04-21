@@ -51,16 +51,15 @@ if (fs.existsSync(configPath)) {
 _.defaults(commander, config);
 
 var options = {
+    server: commander.server || 'localhost:9999',
     port: commander.port || '8080',
-    browsers: commander.browsers || 'Firefox',
-    retry: 4,
+    browsers: commander.browsers,
     timeout: 50000,
-    capture: commander.capture || 'http://localhost:9000',
-    hub: commander.hub || 'http://localhost:8080/hub/register',
+    capture: commander.capture,
+    hub: commander.hub,
     manager: commander.manager,
     managers: commander.managers || [],
-    maxMemory: 500
-};
+    maxMemory: commander.maxMemory || 500
+}
 
-
-browsers.run(options);
+browsers.run(options)
