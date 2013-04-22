@@ -52,7 +52,7 @@
         $(function() {
             var wrapper = $('.wrapper');
 
-            $.ajax('/managers').done(function(data) {
+            $.ajax('/hub/managers').done(function(data) {
                 _.forEach(data, function(url) {
                     wrapper.append(_.template(tpl, {url: url}));
                 });

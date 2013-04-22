@@ -56,10 +56,18 @@ var options = {
     browsers: commander.browsers,
     timeout: 50000,
     capture: commander.capture,
-    hub: commander.hub,
+    hub: commander.hub || '10.15.52.87:8080',
     manager: commander.manager,
     managers: commander.managers || [],
     maxMemory: commander.maxMemory || 500
+}
+
+if (options.server && options.server.indexOf('http') < 0) {
+    options.server = 'http://' + options.server
+}
+
+if (options.hub && options.hub.indexOf('http') < 0) {
+    options.hub = 'http://' + options.hub
 }
 
 browsers.run(options)
