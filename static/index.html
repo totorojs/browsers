@@ -55,7 +55,7 @@
                 var launchedKeys = _.keys(launched);
 
                 tbody.hide();
-                _.each(data.validBrowsers, function(b_name, index) {
+                _.each(data.browsers, function(b_name, index) {
                     var launchedList = '';
                     if (_.indexOf(launchedKeys, b_name) > -1) {
                         var count = launched[b_name];
