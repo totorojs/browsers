@@ -45,7 +45,7 @@ browsers --browsers=IE,Chrome,Firefox --manager
 **http://127.0.0.1:8080**
 
 * 管理页面的聚合地址 
-**http://127.0.0.1:8080/hub/managers**  (只有开启管理功能 **--manager**  才有效)
+**http://127.0.0.1:8080/hub/console**  (只有开启管理功能 **--manager**  才有效)
 
     > 当服务开启管理功能时，支持其他服务器向此服务器进行信息注册. 然后通过上面这个地址查看错误注册的服务信息.
 
