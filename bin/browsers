@@ -1,22 +1,22 @@
 #!/usr/bin/env node
 
-var path = require('path');
-var fs = require('fs');
+var path = require('path')
+var fs = require('fs')
 
-var commander = require('commander');
-var spawn = require('win-spawn');
-require('colorful').colorful();
-var _ = require('underscore');
+var commander = require('commander')
+var spawn = require('win-spawn')
+require('colorful').colorful()
+var _ = require('underscore')
 
-var program = require('../lib/utils/program');
-var browsers = require('../lib/browsers');
+var program = require('../lib/utils/program')
+var browsers = require('../lib/browsers')
 
-var pkgStr = fs.readFileSync(path.join(module.filename, '../../package.json'));
+var pkgStr = fs.readFileSync(path.join(module.filename, '../../package.json'))
 var pkg = JSON.parse(pkgStr)
 
 commander
   .version(pkg.version)
-  .usage('[options]');
+  .usage('[options]')
 
 commander
   .option('-c, --capture [capture url]', '默认浏览器打开的地址: [capture]')
@@ -25,40 +25,44 @@ commander
   .option('--server [server ip]', 'totoro-test server: [10.15.52.87:9999]')
   .option('--browsers [browsers name]', '指定启动的浏览器, 默认 Chrome: [browsers]')
   .option('--hub [s]', '指定主服务.: [http://10.15.52.87:8080/register]')
-  .option('--manager [b]', '是否启动管理服务');
+  .option('--manager [b]', '是否启动管理服务')
 
 
 commander.on('--help', function() {
-  console.log();
-  console.log('  ' + 'Examples:'.to.bold.blue.color);
-  console.log();
-  console.log('   启动Chrome');
-  console.log();
-  console.log('   $ ' + 'browsers run --browsers=Chrome'.to.magenta.color);
-  console.log();
-  console.log('   For more information: ' + 'https://github.com/totorojs/browsers-launcher'.to.underline.color);
-  console.log();
-});
+  console.log()
+  console.log('  ' + 'Examples:'.to.bold.blue.color)
+  console.log()
+  console.log('   启动Chrome')
+  console.log()
+  console.log('   $ ' + 'browsers run --browsers=Chrome'.to.magenta.color)
+  console.log()
+  console.log('   For more information: ' + 'https://github.com/totorojs/browsers-launcher'.to.underline.color)
+  console.log()
+})
 
-commander.parse(process.argv);
+commander.parse(process.argv)
 
 
 // 解析配置
-var configPath = path.join(process.cwd(), 'browsersConfig.json');
-var config = {};
+var configPath = path.join(process.cwd(), 'browsers-config.json')
+var config = {}
 if (fs.existsSync(configPath)) {
-  config = JSON.parse(fs.readFileSync(configPath) + '');
+  config = JSON.parse(fs.readFileSync(configPath) + '')
 }
 
-_.defaults(commander, config);
+_.defaults(commander, config)
+
+var defaultServerHost = '10.15.52.87'
+var defaultServerPort = '9999'
+var defaultClientPort = '8080'
 
 var options = {
-    server: commander.server || '10.15.52.87:9999',
-    port: commander.port || '8080',
+    server: commander.server || defaultServerHost + ':' + defaultServerPort,
+    port: commander.port || defaultClientPort,
     browsers: commander.browsers,
     timeout: 50000,
     capture: commander.capture,
-    hub: commander.hub || '10.15.52.87:8080',
+    hub: commander.hub || defaultServerHost + ':' + defaultClientPort,
     manager: commander.manager,
     managers: commander.managers || [],
     maxMemory: commander.maxMemory || 500
