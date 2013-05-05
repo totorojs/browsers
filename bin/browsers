@@ -54,7 +54,7 @@ _.defaults(commander, config)
 
 var defaultServerHost = '10.15.52.87'
 var defaultServerPort = '9999'
-var defaultClientPort = '8080'
+var defaultClientPort = '9997'
 
 var options = {
     server: commander.server || defaultServerHost + ':' + defaultServerPort,
