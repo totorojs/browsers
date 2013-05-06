@@ -22,7 +22,6 @@ commander
   .option('-c, --capture [capture url]', '默认浏览器打开的地址: [capture]')
   .option('-p, --port [local port]', '本地服务默认端口号(9997): [port]')
   .option('--verbose', 'show debug log')
-  .option('--server [server ip]', 'totoro-test server: [10.15.52.87:9999]')
   .option('--browsers [browsers name]', '指定启动的浏览器, 默认 Chrome: [browsers]')
   .option('--hub [s]', '指定主服务.: [http://10.15.52.87:9997/register]')
   .option('--manager [b]', '是否启动管理服务')
@@ -57,18 +56,17 @@ var defaultServerPort = '9999'
 var defaultClientPort = '9997'
 
 var options = {
-    server: commander.server || defaultServerHost + ':' + defaultServerPort,
     port: commander.port || defaultClientPort,
     browsers: commander.browsers,
     timeout: 50000,
-    capture: commander.capture,
+    capture: commander.capture || defaultServerHost + ':' + defaultServerPort,
     hub: commander.hub || defaultServerHost + ':' + defaultClientPort,
     manager: commander.manager,
     maxMemory: commander.maxMemory || 500
 }
 
-if (options.server && options.server.indexOf('http') < 0) {
-    options.server = 'http://' + options.server
+if (options.capture.indexOf('http') < 0) {
+    options.capture = 'http://' + options.capture
 }
 
 if (options.hub && options.hub.indexOf('http') < 0) {
