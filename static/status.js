@@ -8,7 +8,7 @@
         socket.on('connect', function() {
             setInterval(function() {
                 socket.emit('running', id)
-            }, 10000)
+            }, 30 * 1000)
         })
     }
 }())
