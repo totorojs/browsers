@@ -20,11 +20,11 @@ commander
 
 commander
   .option('-c, --capture [capture url]', '默认浏览器打开的地址: [capture]')
-  .option('-p, --port [local port]', '本地服务默认端口号(8080): [port]')
+  .option('-p, --port [local port]', '本地服务默认端口号(9997): [port]')
   .option('--verbose', 'show debug log')
   .option('--server [server ip]', 'totoro-test server: [10.15.52.87:9999]')
   .option('--browsers [browsers name]', '指定启动的浏览器, 默认 Chrome: [browsers]')
-  .option('--hub [s]', '指定主服务.: [http://10.15.52.87:8080/register]')
+  .option('--hub [s]', '指定主服务.: [http://10.15.52.87:9997/register]')
   .option('--manager [b]', '是否启动管理服务')
 
 
