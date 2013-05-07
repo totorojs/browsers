@@ -12,6 +12,10 @@ var browsers = require('../lib/browsers')
 var pkgStr = fs.readFileSync(path.join(module.filename, '../../package.json'))
 var pkg = JSON.parse(pkgStr)
 
+function splitStr(val) {
+    return val.split(',')
+}
+
 commander
   .version(pkg.version)
   .usage('[options]')
@@ -20,7 +24,7 @@ commander
   .option('-c, --capture [capture url]', '默认浏览器打开的地址: [capture]')
   .option('-p, --port [local port]', '本地服务默认端口号(9997): [port]')
   .option('--verbose', 'show debug log')
-  .option('--browsers [browsers name]', '指定启动的浏览器, 默认 Chrome: [browsers]')
+  .option('--browsers [browsers name]', '指定启动的浏览器, 默认 Chrome: [browsers]', splitStr)
   .option('--hub [s]', '指定主服务.: [http://10.15.52.87:9997/register]')
   .option('--manager [b]', '是否启动管理服务')
 
