@@ -62,7 +62,7 @@ var options = {
     browsers: commander.browsers,
     timeout: 50000,
     capture: commander.capture || defaultServerHost + ':' + defaultServerPort,
-    hub: commander.hub || defaultServerHost + ':' + defaultClientPort,
+    hub: commander.hub,
     manager: commander.manager,
     maxMemory: commander.maxMemory || 500
 }
@@ -71,8 +71,12 @@ if (options.capture.indexOf('http') < 0) {
     options.capture = 'http://' + options.capture
 }
 
-if (options.hub && options.hub.indexOf('http') < 0) {
-    options.hub = 'http://' + options.hub
+if (options.hub) {
+    if (typeof options.hub === 'boolean') {
+        options.hub = 'http://' + defaultServerHost + ':' + defaultClientPort
+    } else if (options.hub.indexOf('http') < 0) {
+        options.hub = 'http://' + options.hub
+    }
 }
 
 function defaults(obj) {
