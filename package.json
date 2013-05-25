@@ -2,9 +2,9 @@
     "name":"browsers",
     "version":"0.4.4",
     "description":"一个纯粹的管理浏览器的模块",
-    "homepage":"https://github.com/totorojs/browsers-launcher",
+    "homepage":"https://github.com/totorojs/browsers",
     "bugs":{
-        "url":"https://github.com/totorojs/browsers-launcher/issues"
+        "url":"https://github.com/totorojs/browsers/issues"
     },
 
     "author":{
@@ -31,7 +31,7 @@
     "preferGlobal":true,
     "repository":{
         "type":"git",
-        "url":"https://github.com/totorojs/browsers-launcher.git"
+        "url":"https://github.com/totorojs/browsers.git"
     },
     "main":"./lib/index",
     "bin":{
