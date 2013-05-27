@@ -6,6 +6,8 @@ var fs = require('fs')
 var commander = require('commander')
 require('colorful').colorful()
 
+var common = require('totoro-common')
+
 var browsers = require('../lib/browsers')
 
 var pkgStr = fs.readFileSync(path.join(module.filename, '../../package.json'))
@@ -49,16 +51,4 @@ if (commander.rawArgs.length === 3 && (commander.rawArgs[2] === '-v' ||
     process.exit(0)
 }
 
-function getCfg(commander) {
-    var cfg = {}
-    commander.options.forEach(function(item, index, list) {
-        var key = item.long.substring(2)
-        if(key in commander) {
-            cfg[key] = commander[key]
-        }
-    })
-    ;delete cfg.version
-    return cfg
-}
-
-browsers.run(getCfg(commander))
+browsers.run(common.getCfg(commander))
