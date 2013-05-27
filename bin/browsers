@@ -24,7 +24,6 @@ commander
   .option('-p, --port [local port]', '本地服务默认端口号(9997): [port]')
   .option('--verbose', 'show debug log')
   .option('--browsers [browsers name]', '指定启动的浏览器, 默认 Chrome: [browsers]', splitStr)
-  .option('--hub [s]', '指定主服务.: [http://10.15.52.87:9997]')
   .option('--manager [b]', '是否启动管理服务')
 
 
@@ -42,51 +41,24 @@ commander.on('--help', function() {
 
 commander.parse(process.argv)
 
-
-// 解析配置
-var configPath = path.join(process.cwd(), 'browsers-config.json')
-var config = {}
-if (fs.existsSync(configPath)) {
-  config = JSON.parse(fs.readFileSync(configPath) + '')
+if (commander.rawArgs.length === 3 && (commander.rawArgs[2] === '-v' ||
+        commander.rawArgs[2] === '--version')) {
+    var pkgFile = path.join(__dirname, '..', 'package.json')
+    var version = JSON.parse(fs.readFileSync(pkgFile)).version
+    console.info('\n  ' + color.cyan(version) + '\n')
+    process.exit(0)
 }
 
-defaults(commander, config)
-
-var defaultServerHost = '10.15.52.87'
-var defaultServerPort = '9999'
-var defaultClientPort = '9997'
-
-var options = {
-    port: commander.port || defaultClientPort,
-    browsers: commander.browsers,
-    timeout: 50000,
-    capture: commander.capture || defaultServerHost + ':' + defaultServerPort,
-    hub: commander.hub,
-    manager: commander.manager,
-    maxMemory: commander.maxMemory || 500
-}
-
-if (options.capture.indexOf('http') < 0) {
-    options.capture = 'http://' + options.capture
-}
-
-if (options.hub) {
-    if (typeof options.hub === 'boolean') {
-        options.hub = 'http://' + defaultServerHost + ':' + defaultClientPort
-    } else if (options.hub.indexOf('http') < 0) {
-        options.hub = 'http://' + options.hub
-    }
-}
-
-function defaults(obj) {
-    [].slice.call(arguments, 1).forEach(function(source) {
-        for (var prop in source) {
-            if (obj[prop] === void 0) {
-                obj[prop] = source[prop]
-            }
+function getCfg(commander) {
+    var cfg = {}
+    commander.options.forEach(function(item, index, list) {
+        var key = item.long.substring(2)
+        if(key in commander) {
+            cfg[key] = commander[key]
         }
     })
-    return obj
+    ;delete cfg.version
+    return cfg
 }
 
-browsers.run(options)
+browsers.run(getCfg(commander))
