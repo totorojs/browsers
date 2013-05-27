@@ -6,7 +6,6 @@ var fs = require('fs')
 var commander = require('commander')
 require('colorful').colorful()
 
-var program = require('../lib/utils/program')
 var browsers = require('../lib/browsers')
 
 var pkgStr = fs.readFileSync(path.join(module.filename, '../../package.json'))
