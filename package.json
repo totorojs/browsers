@@ -23,7 +23,8 @@
         "socket.io-client": "~0.9.11",
         "when": "~2.5.1",
         "plist": "~0.4.3",
-        "useragent": "~2.0.4"
+        "useragent": "~2.0.4",
+        "shelljs": "~0.2.6"
     },
     "devDependencies": {
         "grunt": "~0.4.1",
