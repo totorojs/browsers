@@ -22,11 +22,9 @@ commander
   .usage('[options]')
 
 commander
-  .option('-c, --capture [capture url]', '默认浏览器打开的地址: [capture]')
-  .option('-p, --port [local port]', '本地服务默认端口号(9997): [port]')
+  .option('--capture [capture url]', '默认浏览器打开的地址: [capture]')
   .option('--verbose', 'show debug log')
   .option('--browsers [browsers name]', '指定启动的浏览器, 默认 Chrome: [browsers]', splitStr)
-  .option('--manager [b]', '是否启动管理服务')
 
 
 commander.on('--help', function() {
