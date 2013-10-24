@@ -10,25 +10,25 @@ var browsers = require('../lib/browsers')
 
 
 commander
-    .description('A simple, easy-to-use browser guardian.')
-    .option('-v, --version', 'output the version number')
-    .option('--verbose', 'show debug log')
-    .option('--capture [s]', 'capture url')
-    .option('--browsers [s]', 'browsers to open', common.split)
-    .option('--memory [n]', 'max browser memory in M to restart')
-    .on('version', function() {
-        console.log()
-        var pkg = require('../package')
-        console.log('  ' + colorful.cyan(pkg.version))
-        console.log()
-        process.exit(0)
-    })
-    .on('--help', function() {
-        console.log(colorful.green('  Examples:'))
-        console.log('    $ browsers --browsers=chrome,firefox --memory=200')
-        console.log()
-    })
-    .helpInformation = helpInfo
+  .description('A simple, easy-to-use browser guardian.')
+  .option('-v, --version', 'output the version number')
+  .option('--verbose', 'show debug log')
+  .option('--capture [s]', 'capture url')
+  .option('--browsers [s]', 'browsers to open', common.split)
+  .option('--memory [n]', 'max browser memory in M to restart')
+  .on('version', function() {
+    console.log()
+    var pkg = require('../package')
+    console.log('  ' + colorful.cyan(pkg.version))
+    console.log()
+    process.exit(0)
+  })
+  .on('--help', function() {
+    console.log(colorful.green('  Examples:'))
+    console.log('    $ browsers --browsers=chrome,firefox --memory=200')
+    console.log()
+  })
+  .helpInformation = helpInfo
 
 
 commander.parse(process.argv)
@@ -38,28 +38,28 @@ browsers.run(common.getCfg(commander))
 
 
 function helpInfo() {
-    var commandHelp = ''
-    if (this.commands.length) {
-        commandHelp = '\n' +
-            colorful.green('  Commands:') +
-            '    ' + this.commandHelp().replace(/\n  Commands:\n/gm, '')
-    }
+  var commandHelp = ''
+  if (this.commands.length) {
+    commandHelp = '\n' +
+      colorful.green('  Commands:') +
+      '    ' + this.commandHelp().replace(/\n  Commands:\n/gm, '')
+  }
 
-    return [
-        '',
-        colorful.cyan('  ' + this.description()),
-        '',
-        colorful.green('  Usage:'),
-        '    ' + this._name + ' ' + this.usage(),
-        commandHelp,
-        colorful.green('  Options:'),
-        '' + this.optionHelp().replace(/^/gm, '    '),
-        '',
-        colorful.green('  More Info:'),
-        '    ' + colorful.underline('https://github.com/totorojs/browsers'),
-        '',
-        ''
-    ].join('\n')
+  return [
+    '',
+    colorful.cyan('  ' + this.description()),
+    '',
+    colorful.green('  Usage:'),
+    '    ' + this._name + ' ' + this.usage(),
+    commandHelp,
+    colorful.green('  Options:'),
+    '' + this.optionHelp().replace(/^/gm, '    '),
+    '',
+    colorful.green('  More Info:'),
+    '    ' + colorful.underline('https://github.com/totorojs/browsers'),
+    '',
+    ''
+  ].join('\n')
 }
 
 
