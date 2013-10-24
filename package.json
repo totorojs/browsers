@@ -1,7 +1,7 @@
 {
     "name":"browsers",
     "version":"0.5.2",
-    "description":"一个纯粹的管理浏览器的模块",
+    "description":"A simple, easy-to-use browser guardian.",
     "homepage":"https://github.com/totorojs/browsers",
     "bugs":{
         "url":"https://github.com/totorojs/browsers/issues"
@@ -17,7 +17,7 @@
         "rimraf": "~2.1.4",
         "colorful": "2.1.0",
         "commander": "1.2.0",
-        "async": "~0.2.7",
+        "async": "0.2.7",
         "express": "~3.x",
         "socket.io": "~0.9.x",
         "socket.io-client": "~0.9.11",
