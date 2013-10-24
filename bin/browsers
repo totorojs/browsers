@@ -1,52 +1,65 @@
 #!/usr/bin/env node
 
-var path = require('path')
 var fs = require('fs')
-
+var path = require('path')
 var commander = require('commander')
-require('colorful').colorful()
-
+var colorful = require('colorful')
 var common = require('totoro-common')
 
 var browsers = require('../lib/browsers')
 
-var pkgStr = fs.readFileSync(path.join(module.filename, '../../package.json'))
-var pkg = JSON.parse(pkgStr)
-
-function splitStr(val) {
-    return val.split(',')
-}
 
 commander
-  .version(pkg.version)
-  .usage('[options]')
+    .description('A simple, easy-to-use browser guardian.')
+    .option('-v, --version', 'output the version number')
+    .option('--verbose', 'show debug log')
+    .option('--capture [s]', 'capture url')
+    .option('--browsers [s]', 'browsers to open', common.split)
+    .option('--memory [n]', 'max browser memory in M to restart')
+    .on('version', function() {
+        console.log()
+        var pkg = require('../package')
+        console.log('  ' + colorful.cyan(pkg.version))
+        console.log()
+        process.exit(0)
+    })
+    .on('--help', function() {
+        console.log(colorful.green('  Examples:'))
+        console.log('    $ browsers --browsers=chrome,firefox --memory=200')
+        console.log()
+    })
+    .helpInformation = helpInfo
 
-commander
-  .option('--capture [capture url]', '默认浏览器打开的地址: [capture]')
-  .option('--verbose', 'show debug log')
-  .option('--browsers [browsers name]', '指定启动的浏览器, 默认 Chrome: [browsers]', splitStr)
-
-
-commander.on('--help', function() {
-  console.log()
-  console.log('  ' + 'Examples:'.to.bold.blue.color)
-  console.log()
-  console.log('   启动Chrome')
-  console.log()
-  console.log('   $ ' + 'browsers run --browsers=Chrome'.to.magenta.color)
-  console.log()
-  console.log('   For more information: ' + 'https://github.com/totorojs/browsers-launcher'.to.underline.color)
-  console.log()
-})
 
 commander.parse(process.argv)
 
-if (commander.rawArgs.length === 3 && (commander.rawArgs[2] === '-v' ||
-        commander.rawArgs[2] === '--version')) {
-    var pkgFile = path.join(__dirname, '..', 'package.json')
-    var version = JSON.parse(fs.readFileSync(pkgFile)).version
-    console.info('\n  ' + color.cyan(version) + '\n')
-    process.exit(0)
-}
 
 browsers.run(common.getCfg(commander))
+
+
+function helpInfo() {
+    var commandHelp = ''
+    if (this.commands.length) {
+        commandHelp = '\n' +
+            colorful.green('  Commands:') +
+            '    ' + this.commandHelp().replace(/\n  Commands:\n/gm, '')
+    }
+
+    return [
+        '',
+        colorful.cyan('  ' + this.description()),
+        '',
+        colorful.green('  Usage:'),
+        '    ' + this._name + ' ' + this.usage(),
+        commandHelp,
+        colorful.green('  Options:'),
+        '' + this.optionHelp().replace(/^/gm, '    '),
+        '',
+        colorful.green('  More Info:'),
+        '    ' + colorful.underline('https://github.com/totorojs/browsers'),
+        '',
+        ''
+    ].join('\n')
+}
+
+
