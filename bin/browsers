@@ -6,7 +6,7 @@ var commander = require('commander')
 var colorful = require('colorful')
 var common = require('totoro-common')
 
-var browsers = require('../lib/browsers')
+var Launcher = require('../lib/launcher')
 
 
 commander
@@ -31,10 +31,7 @@ commander
   .helpInformation = helpInfo
 
 
-commander.parse(process.argv)
-
-
-browsers.run(common.getCfg(commander))
+;new Launcher(common.getCfg(commander))
 
 
 function helpInfo() {
