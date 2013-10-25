@@ -6,7 +6,7 @@ var commander = require('commander')
 var colorful = require('colorful')
 var common = require('totoro-common')
 
-var Launcher = require('../lib/launcher')
+var Launcher = require('../index')
 
 
 commander
