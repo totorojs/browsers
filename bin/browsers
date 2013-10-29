@@ -30,6 +30,7 @@ commander
   })
   .helpInformation = helpInfo
 
+commander.parse(process.argv)
 
 ;new Launcher(common.getCfg(commander))
 
