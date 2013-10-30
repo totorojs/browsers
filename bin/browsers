@@ -13,9 +13,10 @@ commander
   .description('A simple, easy-to-use browser guardian.')
   .option('-v, --version', 'output the version number')
   .option('--verbose', 'show debug log')
-  .option('--capture [s]', 'capture url')
+  .option('--capture [s]', 'capture URL')
   .option('--browsers [s]', 'browsers to open', common.split)
-  .option('--memory [n]', 'max browser memory in M to restart')
+  .option('--memory [n]', 'max browser memory(in M) to restart')
+  .option('--restart [s]', 'time(hh:mm) or interval(in hour) to restart')
   .on('version', function() {
     console.log()
     var pkg = require('../package')
@@ -25,7 +26,7 @@ commander
   })
   .on('--help', function() {
     console.log(colorful.green('  Examples:'))
-    console.log('    $ browsers --browsers=chrome,firefox --memory=200')
+    console.log('    $ browsers --browsers=chrome --restart=00:00')
     console.log()
   })
   .helpInformation = helpInfo
