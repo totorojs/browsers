@@ -6,8 +6,6 @@ var commander = require('commander')
 var colorful = require('colorful')
 var common = require('totoro-common')
 
-var Launcher = require('../index')
-
 
 commander
   .description('A simple, easy-to-use browser guardian.')
@@ -33,7 +31,7 @@ commander
 
 commander.parse(process.argv)
 
-;new Launcher(common.getCfg(commander))
+require('../index').launch(common.getCfg(commander))
 
 
 function helpInfo() {
