@@ -51,7 +51,7 @@ $ browsers --capture=totorojs.org
 Open chrome and firefox to visit totorojs.org
 
 ```
-$ browsers --browsers=chrome,firefox
+$ browsers --browsers=chrome,firefox --capture=totorojs.org
 ```
 
 ## 3. Cli Options
