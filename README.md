@@ -1,57 +1,89 @@
-browsers-launcher
-=================
+# browsers
 
-一个简单易用的浏览器管理模块
+A simple browser manager.
 
+---
 
-## 安装
-```
-npm install browsers -g
-```
+## 0. Features
 
-## 主要功能
-1. 浏览器启动和关闭
-2. 浏览器状态查询
-3. 操作系统中的浏览器的探测
-4. 浏览器状态的管理
+- Detect available browsers.
+- Start and kill browser.
+- Auto restart browser when necessary.
 
-## 浏览器支持
-* Chrome
-* Safari
-* Firefox
-* Opera
-* IE
+### Supported browsers
 
-## 使用
-```
-browsers --browsers=IE,Chrome,Firefox
+Both on mac and windows.
 
-browsers --browsers=IE,Chrome,Firefox --capture=http://10.15.52.87:9000
+**Be mind that all browsers must be installed in default path.**
 
-browsers --browsers=IE,Chrome,Firefox --manager
-```
-也可以在本地增加配置文件 **browsers-config.json**
+- Chrome
+- Safari
+- Firefox
+- Opera
+- IE
+
+## 1. Installation
+
+### Install From npm
 
 ```
-{
-    "browsers": ["IE", "Chrome"],
-    "capture": "http://10.15.52.87:9000"
-}
+npm install browsers
 ```
 
+### Install From Github
 
-## web 服务
-* 默认管理页面
-**http://127.0.0.1:9997**
+to get the latest function
 
-* 管理页面的聚合地址 
-**http://127.0.0.1:9997/hub/console**  (只有开启管理功能 **--manager**  才有效)
+```
+git clone git@github.com:totorojs/browsers.git
+cd browsers
+sudo npm install -g
+```
 
-    > 当服务开启管理功能时，支持其他服务器向此服务器进行信息注册. 然后通过上面这个地址查看错误注册的服务信息.
+## 2. Quick Start
 
-## 测试服务器的通信
-目前浏览器打开是基于 **capture** 的服务是否有效，也就是说 browsers 会检查 capture 的服务是否可访问，只有可访问的情况下才会打开指定的浏览器。
-而且会周期性的检查，如果 **capture** 的服务无效，那么会自动关闭相应的浏览器。
+Auto detect available browsers, and visit totorojs.org
 
-## 注意
-* 浏览器需要安装在默认路径才能被识别.
+```
+$ browsers --capture=totorojs.org
+```
+
+Open chrome and firefox to visit totorojs.org
+
+```
+$ browsers --browsers=chrome,firefox
+```
+
+## 3. Cli Options
+
+#### -h, --help
+
+Output usage information.
+
+#### -v, --version
+
+Output the version number.
+
+#### --verbose
+
+Show debug log.
+
+#### --capture
+
+Specify URL to visit.
+
+#### --browsers
+
+Specify browsers to open.
+
+Default: all available browsers on OS.
+
+#### --memory
+
+If browser memory(in M) is more than this value, it will restart.
+
+Default: 200M on windows, and 500M on other OS.
+
+#### --restart
+
+Time(hh:mm) or interval(in hour) to restart
