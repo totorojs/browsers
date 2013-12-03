@@ -24,7 +24,8 @@
         "when": "~2.5.1",
         "plist": "~0.4.3",
         "useragent": "~2.0.4",
-        "shelljs": "~0.2.6"
+        "shelljs": "~0.2.6",
+        "later": "~1.1.6"
     },
     "devDependencies": {
         "grunt": "~0.4.1",
