@@ -13,6 +13,9 @@
     },
 
     "dependencies":{
+        "utilx": "0.0.4",
+        "tracer": "0.6.1",
+
         "totoro-common": "0.1.1",
         "rimraf": "~2.1.4",
         "colorful": "2.1.0",
