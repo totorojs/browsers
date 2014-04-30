@@ -15,7 +15,6 @@
     "dependencies":{
         "utilx": "0.0.4",
         "tracer": "0.6.1",
-        "tree-kill": "0.0.6",
 
         "totoro-common": "0.1.1",
         "rimraf": "~2.1.4",
