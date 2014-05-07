@@ -13,7 +13,7 @@
     },
 
     "dependencies":{
-        "utilx": "0.0.4",
+        "utilx": "0.0.5",
         "tracer": "0.6.1",
 
         "totoro-common": "0.1.1",
