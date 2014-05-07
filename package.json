@@ -1,18 +1,16 @@
 {
-    "name":"browsers",
-    "version":"0.5.3",
-    "description":"A simple, easy-to-use browser guardian.",
-    "homepage":"https://github.com/totorojs/browsers",
-    "bugs":{
-        "url":"https://github.com/totorojs/browsers/issues"
-    },
+    "name": "browsers",
+    "version": "0.5.3",
+    "description": "A simple and stable browser driver.",
+    "homepage": "https://github.com/totorojs/browsers",
+    "bugs": {"url": "https://github.com/totorojs/browsers/issues"},
 
-    "author":{
-        "name":"kangpangpang",
-        "email":"kangpangpang@gmail.com"
-    },
+    "keywords": ["browser","driver"],
 
-    "dependencies":{
+    "author": "kangpangpang <kangpangpang@gmail.com>",
+    "contributors": ["fool2fish <fool2fish@gmail.com>"],
+
+    "dependencies": {
         "utilx": "0.0.5",
         "tracer": "0.6.1",
 
@@ -33,16 +31,13 @@
         "grunt": "~0.4.1",
         "grunt-contrib-jshint": "~0.3.0"
     },
-    "preferGlobal":true,
+
     "repository":{
         "type":"git",
         "url":"https://github.com/totorojs/browsers.git"
     },
-    "main":"./lib/index",
-    "bin":{
+    "bin": {
         "browsers":"./bin/browsers"
     },
-    "engines":{
-        "node":">= 0.8.22"
-    }
+    "preferGlobal":true
 }
