@@ -1,3 +1,4 @@
 {
-  "pulse": "server.totorojs.org:9999/__pulse"
+  "pulse": "server.totorojs.org:9999/__pulse",
+  "restart": 4
 }
