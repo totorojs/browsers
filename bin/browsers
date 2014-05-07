@@ -16,9 +16,9 @@ commander
   .option('-v, --version', 'output version number')
   .option('-b, --browsers <s>', 'browsers to open', utilx.split)
   .option('-c, --capture <s>', 'capture URL')
-  .option('-m, --memory [n]', 'max browser memory(in M) to restart')
-  .option('-p, --cpu [n]', 'max cpu percentage to restart')
-  .option('-i, --interval [n]', 'interval(in hour) to restart')
+  .option('-m, --memory <n>', 'max browser memory(in M) to restart')
+  .option('-p, --cpu <n>', 'max cpu percentage to restart')
+  .option('-i, --interval <n>', 'interval(in hour) to restart')
   .option('-s, --socket <s>', 'socket to listen the pulse')
   .option('-d, --debug', 'show debug log')
   .on('version', function() {
@@ -27,20 +27,16 @@ commander
   })
   .on('--help', function() {
     console.log(colorful.green('  Examples:'))
-    console.log('    $ browsers -c server.totorojs.org:9999')
-    console.log('    $ browsers -c server.totorojs.org:9999 -b chrome,firefox')
-    console.log('    $ browsers -c server.totorojs.org:9999 -m -p -i -s server.totorojs.org:9999/__pulse')
+    console.log('    $ browsers -c=server.totorojs.org:9999')
+    console.log('    $ browsers -c=server.totorojs.org:9999 -b=chrome,firefox')
+    console.log('    $ browsers -c=server.totorojs.org:9999 -m=400 -p=0.5 -i=4 -s=server.totorojs.org:9999/__pulse')
     console.log()
   })
   .helpInformation = utilx.cGetHelp(pkg)
 
 commander.parse(process.argv)
-
-var cfg = utilx.cGetCfg(commander)
-if (cfg.memory === true) cfg.memory = 400
-if (cfg.cpu === true) cfg.cpu = 0.6
-if (cfg.interval === true) cfg.interval = 4
-logger.debug('Config', cfg)
+ 
+browsers(utilx.cGetCfg(commander))
 
 
 
