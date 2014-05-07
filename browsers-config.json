@@ -1,4 +1,5 @@
 {
-  "pulse": "server.totorojs.org:9999/__pulse",
+  "browsers": ["chrome"],
+  "ping": "server.totorojs.org:9999/__driver",
   "restart": 4
 }
