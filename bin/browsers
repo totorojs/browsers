@@ -17,7 +17,7 @@ commander
   .option('-b, --browsers <s>', 'browsers to open', utilx.split)
   .option('-c, --capture <s>', 'capture URL')
   .option('-r, --restart <n>', 'interval(in hour) to restart')
-  .option('-p, --pulse <s>', 'socket to listen the pulse')
+  .option('-p, --ping <s>', 'socket listen the browser pulse')
   .option('-d, --debug', 'show debug log')
   .on('version', function() {
     console.log('\n  ' + colorful.cyan(pkg.version) + '\n')
