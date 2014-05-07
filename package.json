@@ -13,6 +13,7 @@
     "dependencies": {
         "utilx": "0.0.5",
         "tracer": "0.6.1",
+        "uuid": "1.4.1",
 
         "totoro-common": "0.1.1",
         "rimraf": "~2.1.4",
