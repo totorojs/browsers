@@ -14,17 +14,8 @@
         "utilx": "0.0.5",
         "tracer": "0.6.1",
         "socket.io-client": "0.9.16",
-
-        "totoro-common": "0.1.1",
-        "rimraf": "~2.1.4",
         "colorful": "2.1.0",
         "commander": "1.2.0",
-        "async": "0.2.7",
-        "express": "~3.x",
-        "socket.io": "~0.9.x",
-        "when": "~2.5.1",
-        "plist": "~0.4.3",
-        "useragent": "~2.0.4",
         "shelljs": "~0.2.6"
     },
     "devDependencies": {
