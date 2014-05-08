@@ -7,8 +7,6 @@ var colorful = require('colorful')
 var utilx = require('utilx')
 
 var pkg = require('../package')
-var logger = require('../lib/logger')
-var browsers = require('../')
 
 
 commander
@@ -34,7 +32,7 @@ commander
 
 commander.parse(process.argv)
  
-browsers(utilx.cGetCfg(commander))
+require('../lib/run')(utilx.cGetCfg(commander))
 
 
 
