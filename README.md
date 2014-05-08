@@ -1,6 +1,6 @@
 # browsers
 
-A simple browser manager.
+A simple and stable browser driver.
 
 ---
 
