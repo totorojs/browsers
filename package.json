@@ -1,9 +1,9 @@
 {
-  "name": "browsers",
+  "name": "totoro-driver",
   "version": "0.6.0",
   "description": "A simple and stable browser driver.",
-  "homepage": "https://github.com/totorojs/browsers",
-  "bugs": {"url": "https://github.com/totorojs/browsers/issues"},
+  "homepage": "https://github.com/totorojs/totoro-driver",
+  "bugs": {"url": "https://github.com/totorojs/totoro-driver/issues"},
 
   "keywords": ["browser","driver"],
 
@@ -16,7 +16,8 @@
     "socket.io-client": "0.9.16",
     "colorful": "2.1.0",
     "commander": "1.2.0",
-    "shelljs": "~0.2.6"
+    "shelljs": "0.2.6",
+    "plist": "0.4.3"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -25,10 +26,10 @@
 
   "repository":{
     "type":"git",
-    "url":"https://github.com/totorojs/browsers.git"
+    "url":"https://github.com/totorojs/totoro-driver.git"
   },
   "bin": {
-    "browsers":"./bin/browsers"
+    "totoro-driver":"./bin/totoro-driver"
   },
   "preferGlobal":true
 }

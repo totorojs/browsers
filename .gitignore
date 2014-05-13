@@ -3,8 +3,5 @@ node_modules
 .project
 .settings
 .DS_Store
-node_modules/
-*.swp
-logs/
 lib-cov/
 *logs*

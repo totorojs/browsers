@@ -23,9 +23,9 @@ commander
   })
   .on('--help', function() {
     console.log(colorful.green('  Examples:'))
-    console.log('    $ browsers -c=server.totorojs.org:9999')
-    console.log('    $ browsers -c=server.totorojs.org:9999 -b=chrome,firefox')
-    console.log('    $ browsers -c=server.totorojs.org:9999 -i=4 -p=server.totorojs.org:9999/__pulse')
+    console.log('    $ totoro-driver -c=server.totorojs.org:9999')
+    console.log('    $ totoro-driver -c=server.totorojs.org:9999 -b=chrome,firefox')
+    console.log('    $ totoro-driver -c=server.totorojs.org:9999 -p=server.totorojs.org:9999/__driver -i=4')
     console.log()
   })
   .helpInformation = utilx.cGetHelp(pkg)
