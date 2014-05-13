@@ -1,4 +1,4 @@
-# browsers
+# totoro-driver
 
 A simple and stable browser driver.
 
@@ -7,7 +7,8 @@ A simple and stable browser driver.
 ## 0. Features
 
 - Detect available browsers.
-- Open specified browser to visit specified URL and close it.
+- Open specified browsers to visit specified URL.
+- Reopen browsers when neccessary.
 
 ### Supported browsers
 
@@ -25,7 +26,7 @@ Both on mac and windows.
 ### Install From npm
 
 ```
-npm install browsers -g
+npm install totoro-driver -g
 ```
 
 ### Install From Github
@@ -33,8 +34,8 @@ npm install browsers -g
 to get the latest function
 
 ```
-git clone git@github.com:totorojs/browsers.git
-cd browsers
+git clone git@github.com:totorojs/totoro-driver.git
+cd totoro-driver
 sudo npm install -g
 ```
 
@@ -43,13 +44,13 @@ sudo npm install -g
 Auto detect available browsers, and visit totorojs.org
 
 ```
-$ browsers --capture=totorojs.org
+$ totoro-driver --capture=totorojs.org
 ```
 
 Open chrome and firefox to visit totorojs.org
 
 ```
-$ browsers --browsers=chrome,firefox --capture=totorojs.org
+$ totoro-driver --browsers=chrome,firefox --capture=totorojs.org
 ```
 
 ## 3. Cli Options
