@@ -1,6 +1,6 @@
 {
     "name": "browsers",
-    "version": "0.5.3",
+    "version": "0.6.0",
     "description": "A simple and stable browser driver.",
     "homepage": "https://github.com/totorojs/browsers",
     "bugs": {"url": "https://github.com/totorojs/browsers/issues"},
