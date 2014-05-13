@@ -1,3 +1,4 @@
 {
-  "browsers": ["Chrome", "Firefox"]
+  "ping": "server.totorojs.org:9999/__driver",
+  "restart": 4
 }

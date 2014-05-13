@@ -1,14 +1,13 @@
 # browsers
 
-A simple browser manager.
+A simple and stable browser driver.
 
 ---
 
 ## 0. Features
 
 - Detect available browsers.
-- Start and kill browser.
-- Auto restart browser when necessary.
+- Open specified browser to visit specified URL and close it.
 
 ### Supported browsers
 
@@ -19,7 +18,6 @@ Both on mac and windows.
 - Chrome
 - Safari
 - Firefox
-- Opera
 - IE
 
 ## 1. Installation
@@ -27,7 +25,7 @@ Both on mac and windows.
 ### Install From npm
 
 ```
-npm install browsers
+npm install browsers -g
 ```
 
 ### Install From Github
@@ -56,34 +54,38 @@ $ browsers --browsers=chrome,firefox --capture=totorojs.org
 
 ## 3. Cli Options
 
-#### -h, --help
-
-Output usage information.
-
-#### -v, --version
-
-Output the version number.
-
-#### --verbose
-
-Show debug log.
-
-#### --capture
+#### -c, --capture
 
 Specify URL to visit.
 
-#### --browsers
+#### -b, --browsers
 
 Specify browsers to open.
 
 Default: all available browsers on OS.
 
-#### --memory
+#### -i, --interval
 
-If browser memory(in M) is more than this value, it will restart.
+Interval(in hour) to restart.
 
-Default: 200M on windows, and 500M on other OS.
+#### -p, --ping
 
-#### --restart
+TOTORO SERVER ONLY!
 
-Time(hh:mm) or interval(in hour) to restart
+Link to totoro server socket that monitor the pulse of browsers.
+
+#### -d, --debug
+
+Show debug log.
+
+#### -v, --version
+
+Output version number.
+
+#### -h, --help
+
+Output usage information.
+
+
+
+
