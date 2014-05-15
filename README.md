@@ -38,7 +38,7 @@ to get the latest function
 ```
 git clone git@github.com:totorojs/totoro-driver.git
 cd totoro-driver
-sudo npm install -g
+npm install -g
 ```
 
 ## 2. Quick Start
