@@ -1,4 +1,4 @@
 {
   "ping": "server.totorojs.org:9999/__driver",
-  "restart": 4
+  "interval": 8
 }
