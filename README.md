@@ -49,10 +49,10 @@ Open chrome and firefox to visit totorojs.org.
 $ totoro-driver --capture=totorojs.org --browsers=chrome,firefox
 ```
 
-Detect all available browsers to be labors of totoro.
+Detect all available browsers, link to totoro's test server to be labors.
 
 ```
-$ totoro-driver --capture=totorojs.org:9999 --ping=totorojs.org:9999/__driver
+$ totoro-driver --capture=server.totorojs.org:9999 --ping=server.totorojs.org:9999/__driver
 ```
 
 ## 3. Cli Options
