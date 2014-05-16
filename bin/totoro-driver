@@ -25,7 +25,7 @@ commander
     console.log(colorful.green('  Examples:'))
     console.log('    $ totoro-driver -c=server.totorojs.org:9999')
     console.log('    $ totoro-driver -c=server.totorojs.org:9999 -b=chrome,firefox')
-    console.log('    $ totoro-driver -c=server.totorojs.org:9999 -p=server.totorojs.org:9999/__driver -i=4')
+    console.log('    $ totoro-driver -c=server.totorojs.org:9999 -p=server.totorojs.org:9999/__driver -i=8')
     console.log()
   })
   .helpInformation = utilx.cGetHelp(pkg)

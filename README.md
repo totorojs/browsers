@@ -43,16 +43,16 @@ npm install -g
 
 ## 2. Quick Start
 
-Auto detect available browsers, and visit totorojs.org
+Open chrome and firefox to visit totorojs.org.
 
 ```
-$ totoro-driver --capture=totorojs.org
+$ totoro-driver --capture=totorojs.org --browsers=chrome,firefox
 ```
 
-Open chrome and firefox to visit totorojs.org
+Detect all available browsers to be labors of totoro.
 
 ```
-$ totoro-driver --browsers=chrome,firefox --capture=totorojs.org
+$ totoro-driver --capture=totorojs.org:9999 --ping=totorojs.org:9999/__driver
 ```
 
 ## 3. Cli Options
