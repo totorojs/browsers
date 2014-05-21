@@ -7,15 +7,13 @@ var colorful = require('colorful')
 var utilx = require('utilx')
 
 var pkg = require('../package')
-
+var browsers = require('../lib/')
 
 commander
   .description(pkg.description)
   .option('-v, --version', 'output version number')
   .option('-b, --browsers <s>', 'browsers to open', utilx.split)
   .option('-c, --capture <s>', 'capture URL')
-  .option('-i, --interval <n>', 'interval(in hour) to restart')
-  .option('-p, --ping <s>', 'socket listen the browser pulse')
   .option('-d, --debug', 'show debug log')
   .on('version', function() {
     console.log('\n  ' + colorful.cyan(pkg.version) + '\n')
@@ -23,19 +21,26 @@ commander
   })
   .on('--help', function() {
     console.log(colorful.green('  Examples:'))
-    console.log('    $ browsers -c=server.totorojs.org:9999')
-    console.log('    $ browsers -c=server.totorojs.org:9999 -b=chrome,firefox')
-    console.log('    $ browsers -c=server.totorojs.org:9999 -p=server.totorojs.org:9999/__driver -i=8')
+    console.log('    $ browsers -c=totorojs.org')
+    console.log('    $ browsers -c=totorojs.org -b=chrome,firefox')
     console.log()
   })
   .helpInformation = utilx.cGetHelp(pkg)
 
 commander.parse(process.argv)
- 
-require('../lib/run')(utilx.cGetCfg(commander))
 
+var cfg = utilx.cGetCfg(commander)
+var fileCfg = utilx.readJSON('browsers-config.json')
+utilx.mix(cfg, fileCfg)
+cfg.browsers = cfg.browsers || browsers.availableDrivers
+cfg.capture = cfg.capture || 'totorojs.org'
+if (cfg.capture.indexOf('http') === -1) cfg.capture = 'http://' + cfg.capture
 
-
-
+cfg.browsers.forEach(function(name) {
+  browsers.get(name, function(browser) {
+    browser && browser.open(cfg.capture)
+    if (browser) browsers[name] = browser
+  })
+})
 
 
