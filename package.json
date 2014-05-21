@@ -1,9 +1,9 @@
 {
-  "name": "totoro-driver",
+  "name": "browsers",
   "version": "0.6.0",
-  "description": "A simple and stable browser driver.",
-  "homepage": "https://github.com/totorojs/totoro-driver",
-  "bugs": {"url": "https://github.com/totorojs/totoro-driver/issues"},
+  "description": "A simple browser driver.",
+  "homepage": "https://github.com/totorojs/browsers",
+  "bugs": {"url": "https://github.com/totorojs/browsers/issues"},
 
   "keywords": ["browser","driver"],
 
@@ -26,10 +26,10 @@
 
   "repository":{
     "type":"git",
-    "url":"https://github.com/totorojs/totoro-driver.git"
+    "url":"https://github.com/totorojs/browsers.git"
   },
   "bin": {
-    "totoro-driver":"./bin/totoro-driver"
+    "browsers":"./bin/browsers"
   },
   "preferGlobal":true
 }
