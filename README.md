@@ -8,7 +8,7 @@ A simple browser driver.
 
 - Detect available browsers.
 - Open specified browsers to visit specified URL.
-- Reopen browsers when neccessary.
+- Close specified browsers.
 
 ### Supported browsers
 
@@ -41,16 +41,16 @@ npm install -g
 
 ## 2. Quick Start
 
-Open chrome and firefox to visit totorojs.org.
+Detect all available browsers and visit `totorojs.org`.
+
+```
+$ browsers --capture=totorojs.org
+```
+
+Specifiy chrome and firefox to visit totorojs.org.
 
 ```
 $ browsers --capture=totorojs.org --browsers=chrome,firefox
-```
-
-Detect all available browsers, link to totoro's test server to be labors.
-
-```
-$ browsers --capture=server.totorojs.org:9999 --ping=server.totorojs.org:9999/__driver
 ```
 
 ## 3. Cli Options
@@ -64,16 +64,6 @@ Specify URL to visit.
 Specify browsers to open.
 
 Default: all available browsers on OS.
-
-#### -i, --interval
-
-Interval(in hour) to restart.
-
-#### -p, --ping
-
-TOTORO SERVER ONLY!
-
-Link to totoro server socket that monitor the pulse of browsers.
 
 #### -d, --debug
 
